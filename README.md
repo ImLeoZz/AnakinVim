@@ -175,15 +175,6 @@ Vous pouvez aussi consulter les messages avec :
 :messages
 ```
 
-## Contribution
-
-Cette configuration est personnelle, mais les suggestions et améliorations sont les bienvenues :
-
-1. Créez une branche.
-2. Effectuez vos modifications.
-3. Testez la configuration avec `nvim` et `:checkhealth`.
-4. Ouvrez une pull request.
-
 ## Licence
 
 Ajoutez ici la licence de votre choix, par exemple MIT, ou indiquez que cette configuration est personnelle et librement consultable.
