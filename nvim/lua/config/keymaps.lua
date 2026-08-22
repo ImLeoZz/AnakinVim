@@ -35,9 +35,6 @@ end, { silent = true })
 vim.keymap.set({ "n", "t" }, "<C-k>", function()
   smart_move("k")
 end, { silent = true })
-vim.keymap.set({ "n", "t" }, "<C-l>", function()
-  smart_move("l")
-end, { silent = true })
 
 -- For create window terminal
 vim.keymap.set("n", "<leader>t", function()

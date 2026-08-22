@@ -13,3 +13,10 @@ vim.api.nvim_create_autocmd({ "VimResized", "WinResized" }, {
     vim.cmd("redraw!")
   end,
 })
+
+-- Mark term buff for not showing in top tab
+vim.api.nvim_create_autocmd("TermOpen", {
+  callback = function()
+    vim.bo.buflisted = false
+  end,
+})
