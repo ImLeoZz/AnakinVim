@@ -36,13 +36,6 @@ vim.keymap.set({ "n", "t" }, "<C-k>", function()
   smart_move("k")
 end, { silent = true })
 
--- For create window terminal
-vim.keymap.set("n", "<leader>t", function()
-  vim.cmd("botright 12split")
-  vim.cmd("terminal")
-  vim.cmd("startinsert")
-end, { silent = true, desc = "Ouvrir terminal en bas" })
-
 -- For resize when mode its insert
 vim.keymap.set("t", "<C-Up>", [[<C-\><C-n><Cmd>resize +3<CR><Cmd>startinsert<CR>]], { silent = true })
 vim.keymap.set("t", "<C-Down>", [[<C-\><C-n><Cmd>resize -3<CR><Cmd>startinsert<CR>]], { silent = true })

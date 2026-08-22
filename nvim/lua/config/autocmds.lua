@@ -22,7 +22,9 @@ vim.api.nvim_create_autocmd("CursorHold", {
 vim.api.nvim_create_autocmd({ "CompleteDone", "InsertLeave", "CursorHold" }, {
   group = vim.api.nvim_create_augroup("fix_render_artifacts", { clear = true }),
   callback = function()
-    vim.cmd("mode")
+    if vim.fn.pumvisible() == 0 then
+      vim.cmd("mode")
+    end
   end,
 })
 
