@@ -7,6 +7,17 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
+-- refresh for artifact residue
+vim.opt.updatetime = 100
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+    local ok, blink = pcall(require, "blink.cmp")
+    if ok then
+      blink.hide()
+    end
+  end,
+})
+
 -- Refresh for error indent image
 vim.api.nvim_create_autocmd({ "VimResized", "WinResized" }, {
   callback = function()
