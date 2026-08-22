@@ -19,9 +19,10 @@ vim.api.nvim_create_autocmd("CursorHold", {
 })
 
 -- Refresh for error indent image
-vim.api.nvim_create_autocmd({ "VimResized", "WinResized" }, {
+vim.api.nvim_create_autocmd({ "CompleteDone", "InsertLeave", "CursorHold" }, {
+  group = vim.api.nvim_create_augroup("fix_render_artifacts", { clear = true }),
   callback = function()
-    vim.cmd("redraw!")
+    vim.cmd("mode")
   end,
 })
 
