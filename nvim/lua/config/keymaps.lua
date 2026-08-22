@@ -2,6 +2,12 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+-- Function who add smart quit and save
+local function save_all_and_force_quit()
+  vim.cmd("silent! wa")
+  vim.cmd("qa!")
+end
+
 -- function for move if we have direction
 local function smart_move(direction)
   if vim.fn.mode() == "t" then
@@ -15,6 +21,9 @@ local function smart_move(direction)
     vim.cmd("startinsert")
   end
 end
+
+-- For save and quit fast
+vim.keymap.set("n", "<leader>qw", save_all_and_force_quit, { desc = "Save All & Force Quit All (incl. terminals)" })
 
 -- For nav in term to file (except term)
 vim.keymap.set({ "n", "t" }, "<C-h>", function()
