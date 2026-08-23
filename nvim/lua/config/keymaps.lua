@@ -48,3 +48,5 @@ vim.keymap.set("n", "<C-a>", 'ggVG"+y', { desc = "Copier toute la page dans le p
 
 -- For delete (black hole)
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { noremap = true, desc = "Delete without yanking" })
+vim.keymap.set("n", "<leader>D", '"_D', { noremap = true, desc = "Delete to EOL without yanking" })
+vim.keymap.set("n", "<leader>x", '"_x', { noremap = true, desc = "Delete char without yanking" })
