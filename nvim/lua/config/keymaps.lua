@@ -42,3 +42,6 @@ vim.keymap.set("t", "<C-Down>", [[<C-\><C-n><Cmd>resize -3<CR><Cmd>startinsert<C
 
 -- For crtl c
 vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copier la sélection dans le presse-papiers système" })
+
+-- For crtl a
+vim.keymap.set("n", "<C-a>", 'ggVG"+y', { desc = "Copier toute la page dans le presse-papiers système" })
