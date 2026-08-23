@@ -45,3 +45,6 @@ vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copier la sélection dans le press
 
 -- For crtl a
 vim.keymap.set("n", "<C-a>", 'ggVG"+y', { desc = "Copier toute la page dans le presse-papiers système" })
+
+-- For delete (black hole)
+vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { noremap = true, desc = "Delete without yanking" })
