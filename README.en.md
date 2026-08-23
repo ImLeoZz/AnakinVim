@@ -1,4 +1,4 @@
-# CrazyVim 🧠⚡
+# AnakinVim 🧠⚡
 
 > Personal, modular, general-purpose Neovim configuration built on top of [LazyVim](https://www.lazyvim.org/).
 
