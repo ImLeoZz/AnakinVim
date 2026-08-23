@@ -1,4 +1,4 @@
-# CrazyVim — Cheatsheet complet
+# AnakinVim — Cheatsheet complet
 
 Config Neovim modulaire et générale (pas spécifique à un langage). Leader = `<Space>`. Mode : n = normal, i = insertion, v = visuel, x = visuel étendu, c = commande, t = terminal, o = operator-pending.
 
