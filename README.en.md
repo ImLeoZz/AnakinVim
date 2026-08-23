@@ -1,186 +1,74 @@
-# My Neovim Configuration
+# CrazyVim 🧠⚡
 
-A personal Neovim configuration, designed for a fast, simple, and enjoyable workflow in the terminal.
+> Personal, modular, general-purpose Neovim configuration built on top of [LazyVim](https://www.lazyvim.org/).
 
-> This configuration evolves regularly as I work on projects and learn Lua, C, and Unix tools.
+🇫🇷 [Lire en français](./README.md)
 
-## Table of Contents
+## Overview
 
-- [Features](#features)
-- [Installation](#installation)
-- [Structure](#structure)
-- [Useful Commands](#useful-commands)
-- [Keybindings](#keybindings)
-- [Customization](#customization)
-- [Troubleshooting](#troubleshooting)
+CrazyVim is my daily-driver Neovim setup. It's built on the **LazyVim** framework (LSP, Treesitter, fuzzy-finder, etc. included by default), with a curated set of plugins layered on top that are useful in **any context** (code, plain text, scripts, config files, etc.), not tied to one specific language or workflow. It's a general, modular base I keep extending as needs come up.
 
-## Features
+## Plugins added on top of LazyVim
 
-- Configuration written in Lua.
-- Plugin management with [lazy.nvim](https://github.com/folke/lazy.nvim), if present in this configuration.
-- Syntax highlighting and better code understanding with Treesitter.
-- Autocompletion, diagnostics, and navigation via LSP.
-- Fast searching of files, text, and symbols.
-- Custom keybindings using a `<Leader>` key.
-- Environment suited for development in C, Lua, Shell, and Markdown.
-- Configuration organized into modules for easier maintenance.
+| Plugin | File | Purpose |
+|---|---|---|
+| **blink.cmp** | `plugins/blink.lua` | Completion engine (LSP, snippets, buffer, path) |
+| **emmet** | `plugins/emmet.lua` | Quick abbreviation expansion for tags/structures (handy for HTML/JSX, but optional) |
+| **live-preview.nvim** | `plugins/live-preview.lua` | Live browser preview (Markdown/HTML/CSS/JS) |
+| **snacks.nvim** | `plugins/snacks.lua` | General-purpose QoL collection: dashboard, floating terminal, notifications, etc. |
+| **nvim-treesitter** | `plugins/treesitter.lua` | Advanced syntax highlighting + node-based incremental selection, for every installed language |
 
 ## Installation
 
-### Prerequisites
-
-Install the following before launching Neovim:
-
-- Neovim.
-- Git.
-- A C compiler, such as `gcc` or `clang`, if you develop in C.
-- A search tool such as `ripgrep`, recommended for text search.
-- Node.js, Python, or other runtimes depending on the LSP servers used.
-
-### Installing the Configuration
-
-Back up your current configuration, then clone this repository:
-
 ```bash
-mv ~/.config/nvim ~/.config/nvim.backup 2>/dev/null || true
-git clone <YOUR_REPO_URL> ~/.config/nvim
+git clone https://github.com/ImLeoZz/CrazyVim.git ~/.config/nvim
 nvim
 ```
 
-On first launch, the plugin manager automatically installs the configured dependencies.
+On first launch, `lazy.nvim` automatically installs every plugin pinned in `lazy-lock.json`.
 
-Replace `<YOUR_REPO_URL>` with the actual URL of your GitHub repository.
+### Requirements
 
-### Updating
+- Neovim ≥ 0.10
+- Git
+- A [Nerd Font](https://www.nerdfonts.com/) installed in your terminal
+- `ripgrep` and `fd` for file/text search
+- A browser if you use `live-preview.nvim`
 
-```bash
-cd ~/.config/nvim
-git pull
-nvim
+## Repo structure
+
+```
+nvim/
+├── init.lua
+├── lazy-lock.json
+├── lazyvim.json
+├── stylua.toml
+└── lua/
+    ├── config/
+    │   ├── autocmds.lua
+    │   ├── keymaps.lua
+    │   ├── lazy.lua
+    │   └── options.lua
+    └── plugins/
+        ├── blink.lua
+        ├── emmet.lua
+        ├── live-preview.lua
+        ├── snacks.lua
+        └── treesitter.lua
 ```
 
-Inside Neovim, you can then sync the plugins with the following command if `lazy.nvim` is used:
+The split between `config/` (core editor behavior) and `plugins/` (one file per plugin) lets you add, remove, or disable a module without touching anything else — LazyVim's modular philosophy taken all the way.
 
-```vim
-:Lazy sync
-```
+## Keymaps
 
-## Structure
+The full list of keymaps (LazyVim defaults + added plugins) lives in [`CHEATSHEET.md`](./CHEATSHEET.md).
 
-The structure may look like this:
+Quick reminder: the leader key is `<Space>`. Press `<Space>` alone and let the `which-key` popup show you everything available in context.
 
-```text
-~/.config/nvim/
-├── init.lua                  # Configuration entry point
-├── lazy-lock.json            # Locked plugin versions
-├── lua/
-│   ├── config/               # General options and keybindings
-│   ├── plugins/              # Plugin declarations
-│   └── [modules]/            # Personal modules
-└── README.md                 # Documentation
-```
+## Stability notes
 
-`init.lua` is loaded automatically when Neovim starts. The other files are imported from this entry point.
-
-## Useful Commands
-
-| Command | Description |
-|---|---|
-| `:checkhealth` | Checks the status of Neovim and its dependencies |
-| `:Lazy` | Opens the plugin manager interface |
-| `:Lazy sync` | Installs and updates plugins |
-| `:Mason` | Manages LSP servers and other tools, if Mason is installed |
-| `:LspInfo` | Displays active LSP servers |
-| `:TSUpdate` | Updates Treesitter parsers |
-| `:Tutor` | Opens the built-in Vim tutorial |
-
-## Keybindings
-
-> Adapt this table to the keybindings actually present in your configuration.
-
-| Keybinding | Mode | Action |
-|---|---|---|
-| `<Leader>` | All | Prefix for custom keybindings |
-| `<Leader>ff` | Normal | Search for a file |
-| `<Leader>fg` | Normal | Search for text in the project |
-| `<Leader>fb` | Normal | Search an open buffer |
-| `<Leader>e` | Normal | Open or close the file explorer |
-| `K` | Normal | Show documentation under the cursor |
-| `gd` | Normal | Go to definition |
-| `gr` | Normal | Show references |
-| `<Leader>ca` | Normal/Visual | Show code actions |
-| `[d` / `]d` | Normal | Previous / next diagnostic |
-| `<Leader>l` | Normal | Format the file or selection |
-
-To see which keybindings are actually available, use:
-
-```vim
-:map
-:verbose nmap <Leader>
-```
-
-## Customization
-
-Configuration files are generally located in:
-
-```bash
-~/.config/nvim/
-```
-
-To edit the configuration from within Neovim:
-
-```vim
-:edit $MYVIMRC
-```
-
-After making a change, restart Neovim or reload the relevant file. To check for Lua errors:
-
-```vim
-:messages
-:checkhealth
-```
-
-Add your plugins in `lua/plugins/` if your configuration uses `lazy.nvim`'s automatic import.
-
-## Troubleshooting
-
-### Plugins won't install
-
-Check that Git is installed and your connection is working. Then run:
-
-```vim
-:Lazy sync
-```
-
-### LSP isn't working
-
-Check that the server corresponding to the language is installed, then use:
-
-```vim
-:LspInfo
-:Mason
-```
-
-### An error appears on startup
-
-Launch Neovim without your configuration to determine whether the problem comes from a plugin or a Lua file:
-
-```bash
-nvim --clean
-```
-
-You can also check the messages with:
-
-```vim
-:messages
-```
+This config went through a few recent iterations on completion (`blink.cmp`) and autocmds — several commits fixed a conflict between an autocmd and a function, plus a persistent "ghost text" issue. If you see weird insert-mode behavior, check `plugins/blink.lua` and `config/autocmds.lua` first.
 
 ## License
 
-Add your chosen license here, for example MIT, or indicate that this configuration is personal and freely available to view.
-
----
-
-Configuration maintained with ❤️ and lots of terminal sessions.
-
-
+Personal use, feel free to get inspired by it.
