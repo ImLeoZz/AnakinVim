@@ -22,6 +22,14 @@ local function smart_move(direction)
   end
 end
 
+-- For crtl a
+vim.keymap.set("n", "<C-a>", function()
+  local ve = vim.o.virtualedit
+  vim.o.virtualedit = ""
+  vim.cmd('normal! ggVG"+y')
+  vim.o.virtualedit = ve
+end, { desc = "Copier toute la page dans le presse-papiers système" })
+
 -- For save and quit fast
 vim.keymap.set("n", "<leader>qw", save_all_and_force_quit, { desc = "Save All & Force Quit All (incl. terminals)" })
 
@@ -42,9 +50,6 @@ vim.keymap.set("t", "<C-Down>", [[<C-\><C-n><Cmd>resize -3<CR><Cmd>startinsert<C
 
 -- For crtl c
 vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copier la sélection dans le presse-papiers système" })
-
--- For crtl a
-vim.keymap.set("n", "<C-a>", 'ggVG"+y', { desc = "Copier toute la page dans le presse-papiers système" })
 
 -- For delete (black hole)
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { noremap = true, desc = "Delete without yanking" })
