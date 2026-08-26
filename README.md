@@ -44,6 +44,7 @@ nvim/
 ├── lazy-lock.json
 ├── lazyvim.json
 ├── stylua.toml
+├── .clang-format
 └── lua/
     ├── config/
     │   ├── autocmds.lua
@@ -61,15 +62,17 @@ nvim/
 
 Le découpage `config/` (comportement de base de l'éditeur) vs `plugins/` (un fichier par plugin) permet d'ajouter, retirer ou désactiver un module sans toucher au reste — c'est la logique modulaire de LazyVim, poussée jusqu'au bout.
 
+Un fichier `.clang-format` est fourni à la racine du repo pour garder un style de code C cohérent si tu utilises `clang-format` en complément (ou à la place) du formatage norme 42 géré par `42-C-Formatter.nvim`.
+
 ## Raccourcis clavier
 
 La liste complète des raccourcis (LazyVim + plugins ajoutés + raccourcis persos de `keymaps.lua`) est dans [`CHEATSHEET.md`](./CHEATSHEET.md).
 
 Rappel rapide : la touche leader est `<Space>`. Appuie sur `<Space>` seul et laisse la fenêtre `which-key` s'ouvrir pour voir tout ce qui est disponible en contexte.
 
-## Historique / notes de stabilité
+## Notes de compatibilité
 
-Cette config a eu quelques itérations récentes sur l'autocomplétion (`blink.cmp`) et les autocmds — plusieurs commits ont corrigé un conflit entre un autocmd et une fonction, ainsi qu'un "ghost text" persistant, un conflit entre `Ctrl-A` et le déplacement du curseur, et l'écrasement du presse-papiers par les suppressions. Si tu rencontres un comportement bizarre à l'insertion, regarde en priorité `plugins/blink.lua` et `config/autocmds.lua`.
+Si tu rencontres un problème d'affichage avec l'autocomplétion (ghost text qui reste affiché, artefacts visuels, etc.), vérifie en priorité que ta version de Neovim n'est pas une version **-dev/nightly** instable, mais bien une version **stable et compatible** avec cette config.
 
 ## Licence
 
