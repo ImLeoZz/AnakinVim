@@ -26,7 +26,7 @@ end
 vim.keymap.set("n", "<C-a>", function()
   local ve = vim.o.virtualedit
   vim.o.virtualedit = ""
-  vim.cmd('normal! ggVG"+y')
+  vim.cmd("normal! ggVG")
   vim.o.virtualedit = ve
 end, { desc = "Copier toute la page dans le presse-papiers système" })
 
