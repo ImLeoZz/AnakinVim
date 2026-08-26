@@ -6,6 +6,7 @@ vim.opt.guicursor = "a:ver25"
 vim.opt.expandtab = false -- convertit chaque tabulation en vrais espaces
 vim.opt.spelllang = "en,fr" -- Ajoute les langues pour eviter les soulignement
 vim.opt.virtualedit = "onemore" -- Laisse le curseur se deplacer au dernier caractere
+vim.g.autoformat = false -- Enleve le format de norm de LazyVim
 
 -- Fix tab/indentation
 vim.api.nvim_create_autocmd("FileType", {
