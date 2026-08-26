@@ -23,7 +23,7 @@ local function smart_move(direction)
 end
 
 -- For crtl a
-vim.keymap.set("n", "<C-a>", function()
+vim.keymap.set({ "n", "v" }, "<C-a>", function()
   local ve = vim.o.virtualedit
   vim.o.virtualedit = ""
   vim.cmd("normal! ggVG")
