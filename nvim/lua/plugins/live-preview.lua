@@ -3,7 +3,7 @@ return {
     "brianhuster/live-preview.nvim",
     cmd = { "LivePreview" },
     config = function()
-      require("livepreview.config").setup()
+      require("livepreview.config").set()
     end,
   },
 }
