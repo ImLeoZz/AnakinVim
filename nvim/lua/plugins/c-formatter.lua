@@ -7,9 +7,16 @@ return {
       pattern = { "*.c", "*.h" },
       group = group,
       callback = function()
-        if vim.fn.executable("c_formatter_42") == 1 then
-          vim.bo.equalprg = "c_formatter_42"
-          vim.cmd("silent! normal! gg=G")
+        if vim.fn.executable("c_formatter_42") ~= 1 then
+          return
+        end
+        local bufnr = vim.api.nvim_get_current_buf()
+        local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+        local input = table.concat(lines, "\n") .. "\n"
+        local output = vim.fn.system("c_formatter_42", input)
+        if vim.v.shell_error == 0 and output ~= "" then
+          local new_lines = vim.split(output, "\n", { trimempty = true })
+          vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, new_lines)
         end
       end,
     })
