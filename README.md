@@ -1,4 +1,4 @@
-# AnakinVim 🧠⚡
+# AnakinVim
 
 > Configuration Neovim personnelle, modulaire et généraliste, construite sur [LazyVim](https://www.lazyvim.org/).
 
