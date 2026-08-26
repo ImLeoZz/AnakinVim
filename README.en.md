@@ -6,7 +6,7 @@
 
 ## Overview
 
-CrazyVim is my daily-driver Neovim setup. It's built on the **LazyVim** framework (LSP, Treesitter, fuzzy-finder, etc. included by default), with a curated set of plugins layered on top that are useful in **any context** (code, plain text, scripts, config files, etc.), not tied to one specific language or workflow. It's a general, modular base I keep extending as needs come up.
+AnakinVim is my daily-driver Neovim setup. It's built on the **LazyVim** framework (LSP, Treesitter, fuzzy-finder, etc. included by default), with a curated set of plugins layered on top that are useful in **any context** (code, plain text, scripts, config files, etc.), not tied to one specific language or workflow. It's a general, modular base I keep extending as needs come up.
 
 ## Plugins added on top of LazyVim
 
@@ -15,13 +15,14 @@ CrazyVim is my daily-driver Neovim setup. It's built on the **LazyVim** framewor
 | **blink.cmp** | `plugins/blink.lua` | Completion engine (LSP, snippets, buffer, path) |
 | **emmet** | `plugins/emmet.lua` | Quick abbreviation expansion for tags/structures (handy for HTML/JSX, but optional) |
 | **live-preview.nvim** | `plugins/live-preview.lua` | Live browser preview (Markdown/HTML/CSS/JS) |
-| **snacks.nvim** | `plugins/snacks.lua` | General-purpose QoL collection: dashboard, floating terminal, notifications, etc. |
+| **snacks.nvim** | `plugins/snacks.lua` | General-purpose QoL collection: dashboard, floating terminal, notifications, explorer with hidden/ignored files visible |
 | **nvim-treesitter** | `plugins/treesitter.lua` | Advanced syntax highlighting + node-based incremental selection, for every installed language |
+| **42-C-Formatter.nvim** | `plugins/c-formatter.lua` | Auto-formats `.c`/`.h` files to the 42 norm on save |
 
 ## Installation
 
 ```bash
-git clone https://github.com/ImLeoZz/CrazyVim.git ~/.config/nvim
+git clone https://github.com/ImLeoZz/AnakinVim.git ~/.config/nvim
 nvim
 ```
 
@@ -51,6 +52,7 @@ nvim/
     │   └── options.lua
     └── plugins/
         ├── blink.lua
+        ├── c-formatter.lua
         ├── emmet.lua
         ├── live-preview.lua
         ├── snacks.lua
@@ -61,13 +63,13 @@ The split between `config/` (core editor behavior) and `plugins/` (one file per 
 
 ## Keymaps
 
-The full list of keymaps (LazyVim defaults + added plugins) lives in [`CHEATSHEET.md`](./CHEATSHEET.md).
+The full list of keymaps (LazyVim defaults + added plugins + custom bindings from `keymaps.lua`) lives in [`CHEATSHEET.md`](./CHEATSHEET.md).
 
 Quick reminder: the leader key is `<Space>`. Press `<Space>` alone and let the `which-key` popup show you everything available in context.
 
 ## Stability notes
 
-This config went through a few recent iterations on completion (`blink.cmp`) and autocmds — several commits fixed a conflict between an autocmd and a function, plus a persistent "ghost text" issue. If you see weird insert-mode behavior, check `plugins/blink.lua` and `config/autocmds.lua` first.
+This config went through a few recent iterations on completion (`blink.cmp`) and autocmds — several commits fixed a conflict between an autocmd and a function, a persistent "ghost text" issue, a conflict between `Ctrl-A` and cursor movement, and clipboard being overwritten by deletions. If you see weird insert-mode behavior, check `plugins/blink.lua` and `config/autocmds.lua` first.
 
 ## License
 

@@ -2,7 +2,7 @@
 
 Config Neovim modulaire et générale (pas spécifique à un langage). Leader = `<Space>`. Mode : n = normal, i = insertion, v = visuel, x = visuel étendu, c = commande, t = terminal, o = operator-pending.
 
-⚠️ Ce fichier couvre les raccourcis **par défaut de LazyVim** et ceux des **plugins ajoutés** dans ce repo. Si tu as personnalisé des touches dans `config/keymaps.lua`, elles priment sur ce qui est listé ici — vérifie ce fichier en cas de doute, ou fais `<Space>sk` pour lister tes vrais keymaps actifs en live.
+⚠️ Ce fichier couvre les raccourcis **par défaut de LazyVim**, ceux des **plugins ajoutés**, et les **raccourcis persos** définis dans `config/keymaps.lua` de ce repo. Si tu as personnalisé d'autres touches, elles priment sur ce qui est listé ici — vérifie ce fichier en cas de doute, ou fais `<Space>sk` pour lister tes vrais keymaps actifs en live.
 
 ## 1. Général / édition
 
@@ -18,14 +18,23 @@ Config Neovim modulaire et générale (pas spécifique à un langage). Leader = 
 | `<Space>un` | Fermer toutes les notifications | n |
 | `m{a-z}` | Poser une marque locale | n |
 | `'{marque}` | Sauter à une marque | n |
+| `<C-a>` | Sélectionner tout le buffer (`ggVG`), remplace l'incrémentation par défaut de Vim | n,v |
+| `<C-c>` | Copier la sélection vers le presse-papiers système (`"+y`) | v |
+| `qw` | Sauvegarder tout et forcer la fermeture (y compris les terminaux) | n |
+| `d` | Supprimer sans écraser le presse-papiers (registre blackhole `"_d`) | n,v |
+| `D` | Supprimer jusqu'à la fin de ligne sans écraser le presse-papiers (`"_D`) | n |
+| `x` | Supprimer un caractère sans écraser le presse-papiers (`"_x`) | n |
+
+> Perso : `virtualedit=onemore` est activé (`options.lua`), donc le curseur peut se déplacer une position après le dernier caractère de la ligne en mode normal.
 
 ## 2. Fenêtres
 
 | Touche | Action |
 |---|---|
-| `<C-h/j/k/l>` | Aller à la fenêtre gauche/bas/haut/droite |
+| `<C-h/j/k/l>` | Aller à la fenêtre gauche/bas/haut/droite — fonctionne aussi **depuis un terminal** (sort de l'insertion avant de changer de fenêtre, puis la reprend si tu retournes dans un terminal) |
 | `<C-Up>/<C-Down>` | Augmenter/diminuer hauteur fenêtre |
 | `<C-Left>/<C-Right>` | Diminuer/augmenter largeur fenêtre |
+| `<C-Up>/<C-Down>` (mode terminal) | Redimensionner la fenêtre terminal de ±3 lignes puis revenir en mode insertion |
 | `<Space>-` | Split en dessous |
 | `<Space>\|` | Split à droite |
 | `<Space>wd` | Fermer la fenêtre |
@@ -47,7 +56,7 @@ Config Neovim modulaire et générale (pas spécifique à un langage). Leader = 
 
 | Touche | Action |
 |---|---|
-| `<Space>e` | Explorateur de fichiers (racine projet) |
+| `<Space>e` | Explorateur de fichiers (racine projet) — affiche aussi les **fichiers cachés** (`.env`, etc.) et les fichiers **ignorés par git** (`node_modules`, etc.) |
 | `<Space>E` | Explorateur de fichiers (dossier courant) |
 | `<Space>ff` | Chercher un fichier (racine) |
 | `<Space>fF` | Chercher un fichier (dossier courant) |
@@ -145,7 +154,13 @@ Tape une abréviation comme `div.card>ul>li*3` puis déclenche l'expansion avec 
 
 > Vérifie `plugins/snacks.lua` pour la touche exacte du terminal flottant que tu as configurée (le repo mentionne son ajout dans le commit "add some plugins to QOL (term)").
 
-## 12. Divers / plugin manager
+## 12. Formatage automatique — 42-C-Formatter.nvim
+
+| Déclencheur | Action |
+|---|---|
+| `BufWritePre` sur `*.c` / `*.h` | Reformate automatiquement le fichier à la norme 42 avant la sauvegarde (nécessite `c_formatter_42` installé et dans le `PATH`, sinon ignoré silencieusement) |
+
+## 13. Divers / plugin manager
 
 | Touche | Action |
 |---|---|
@@ -156,4 +171,4 @@ Tape une abréviation comme `div.card>ul>li*3` puis déclenche l'expansion avec 
 
 ---
 
-**À vérifier toi-même** : je n'ai pas pu lire le contenu brut de tes fichiers `.lua` via l'API GitHub (le connecteur confirme le téléchargement mais ne renvoie pas le texte), donc les touches personnalisées que tu as éventuellement redéfinies dans `config/keymaps.lua`, `plugins/blink.lua` ou `plugins/snacks.lua` ne sont pas garanties d'être exactement celles listées ici. Lance `<Space>sk` dans Neovim pour voir la liste exacte et exhaustive de tes keymaps actifs, et ajuste ce fichier si besoin.
+**À vérifier toi-même** : les touches `<C-a>`, `<C-c>`, `<C-h/j/k/l>`, `<C-Up>/<C-Down>` sont des combinaisons de contrôle qui peuvent ne pas s'afficher correctement selon ton terminal/clavier — utilise `<Space>sk` dans Neovim pour voir la liste exacte et exhaustive de tes keymaps actifs, et ajuste ce fichier si besoin.
