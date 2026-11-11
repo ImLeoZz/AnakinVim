@@ -8,11 +8,11 @@
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
 -- Refresh for error indent image
-vim.api.nvim_create_autocmd({ "CompleteDone", "InsertLeave", "CursorHold" }, {
+vim.api.nvim_create_autocmd({ "CompleteDone", "InsertLeave" }, {
   group = vim.api.nvim_create_augroup("fix_render_artifacts", { clear = true }),
   callback = function()
     if vim.fn.pumvisible() == 0 then
-      vim.cmd("mode")
+      vim.cmd("redraw")
     end
   end,
 })
