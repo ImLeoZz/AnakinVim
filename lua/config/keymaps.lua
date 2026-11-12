@@ -44,6 +44,12 @@ vim.keymap.set({ "n", "t" }, "<C-k>", function()
   smart_move("k")
 end, { silent = true })
 
+-- For switch buffer: Alt+h (previous) / Alt+l (next), replaces LazyVim's Shift+h / Shift+l
+pcall(vim.keymap.del, "n", "<S-h>")
+pcall(vim.keymap.del, "n", "<S-l>")
+vim.keymap.set("n", "<A-h>", "<cmd>bprevious<cr>", { silent = true, desc = "Prev Buffer" })
+vim.keymap.set("n", "<A-l>", "<cmd>bnext<cr>", { silent = true, desc = "Next Buffer" })
+
 -- For resize when mode its insert
 vim.keymap.set("t", "<C-Up>", [[<C-\><C-n><Cmd>resize +3<CR><Cmd>startinsert<CR>]], { silent = true })
 vim.keymap.set("t", "<C-Down>", [[<C-\><C-n><Cmd>resize -3<CR><Cmd>startinsert<CR>]], { silent = true })
