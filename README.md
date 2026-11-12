@@ -74,6 +74,8 @@ puis quitte et relance `nvim`. Vérifie ensuite avec `:checkhealth`.
 |---|---|---|
 | `F1` | normal | insère / met à jour le header 42 (`:Stdheader`) |
 | `F5` | normal | lance la norminette sur le fichier |
+| `Alt-h` | normal | buffer précédent |
+| `Alt-l` | normal | buffer suivant |
 | `<leader>qw` | normal | sauvegarde tout et quitte tout (force, terminaux inclus) |
 | `Ctrl-a` | normal, visuel | sélectionne tout le fichier |
 | `Ctrl-c` | visuel | copie la sélection dans le presse-papiers système |
@@ -83,7 +85,9 @@ puis quitte et relance `nvim`. Vérifie ensuite avec `:checkhealth`.
 | `<leader>D` | normal | supprime jusqu'à la fin de ligne sans copier |
 | `<leader>x` | normal | supprime un caractère sans copier |
 
-Les raccourcis par défaut de LazyVim restent disponibles (`<leader>` seul affiche le menu `which-key`).
+Les raccourcis par défaut de LazyVim restent disponibles (`<leader>` seul affiche le menu `which-key`),
+sauf `Shift-h` / `Shift-l` (changement de buffer) qui sont remplacés par `Alt-h` / `Alt-l`.
+Ils retrouvent leur rôle natif de Vim : `H` = haut de l'écran, `L` = bas de l'écran.
 
 ## 5. Fonctionnement
 
@@ -104,8 +108,11 @@ Les raccourcis par défaut de LazyVim restent disponibles (`<leader>` seul affic
 - Il se met à jour automatiquement à chaque sauvegarde (ligne `Updated`).
 - Le mail est `$USER@student.42lyon.fr` par défaut. Ajuste `plugin/stdheader.vim` si besoin.
 
-### Terminal intégré
+### Navigation entre buffers
+- `Alt-h` / `Alt-l` parcourent les buffers ouverts (`:bprevious` / `:bnext`).
 - Les terminaux ne s'affichent pas dans la barre d'onglets des buffers.
+
+### Terminal intégré
 - `Ctrl-h/j/k` fonctionne depuis un terminal en mode insertion.
 
 ### Anti-artefacts d'affichage
@@ -119,6 +126,7 @@ Les raccourcis par défaut de LazyVim restent disponibles (`<leader>` seul affic
 | Plus d'erreurs de norme | `which norminette` ; sinon `pipx ensurepath` + nouveau terminal |
 | Carrés vides à la place des icônes | police Nerd Font non installée ou non sélectionnée dans le terminal |
 | `Ctrl +/-` ne zoome pas | changer de police dans le terminal |
+| `Alt-h` / `Alt-l` ne changent pas de buffer | le terminal ou le gestionnaire de fenêtres capte `Alt` avant nvim ; teste dans un autre terminal ou libère le raccourci |
 | Plugins cassés après mise à jour | `:Lazy restore` (revient au `lazy-lock.json`) |
 | Diagnostic de santé | `:checkhealth` |
 
