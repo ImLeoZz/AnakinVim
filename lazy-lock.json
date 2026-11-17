@@ -1,5 +1,4 @@
 {
-  "42-C-Formatter.nvim": { "branch": "main", "commit": "f925bedf740e39f500298251e9eaa062667e10e3" },
   "42norm.nvim": { "branch": "main", "commit": "082193db6a377ef90767de98639425aaced487ac" },
   "LazyVim": { "branch": "main", "commit": "0fa4a847929fc6beae40a3063615a58115678c34" },
   "blink.cmp": { "branch": "main", "commit": "78336bc89ee5365633bcf754d93df01678b5c08f" },
