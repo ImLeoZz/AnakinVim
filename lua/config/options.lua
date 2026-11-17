@@ -18,3 +18,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.bo.softtabstop = 4
   end,
 })
+
+-- Force .h with .c
+vim.g.c_syntax_for_h = 1
