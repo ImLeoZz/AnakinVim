@@ -13,7 +13,7 @@ return {
       vim.lsp.enable("codebook")
 
       -- Ajoute le mot sous le curseur dans le dico versionné
-      vim.keymap.set("n", "<leader>ca", function()
+      vim.keymap.set("n", "<leader>cw", function()
         local word = vim.fn.expand("<cword>"):lower()
         local lines = vim.fn.filereadable(dict) == 1 and vim.fn.readfile(dict) or {}
         local content = table.concat(lines, "\n")
