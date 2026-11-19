@@ -4,7 +4,7 @@ return {
     config = function()
       vim.lsp.config("codebook", {
         init_options = {
-          globalConfigPath = vim.fn.stdpath("config") .. "/codebook/codebook.toml",
+          globalConfigPath = "~/.config/nvim/codebook/codebook.toml",
           diagnosticSeverity = "information",
         },
       })
