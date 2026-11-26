@@ -61,3 +61,10 @@ vim.keymap.set("v", "<C-c>", '"+y', { desc = "Copier la sélection dans le press
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { noremap = true, desc = "Delete without yanking" })
 vim.keymap.set("n", "<leader>D", '"_D', { noremap = true, desc = "Delete to EOL without yanking" })
 vim.keymap.set("n", "<leader>x", '"_x', { noremap = true, desc = "Delete char without yanking" })
+
+-- For toggle on-screen diagnostics (42norm + clangd + all LSP)
+vim.keymap.set("n", "<leader>tn", function()
+  local enabled = not vim.diagnostic.is_enabled()
+  vim.diagnostic.enable(enabled)
+  vim.notify("Diagnostics " .. (enabled and "activés" or "désactivés"))
+end, { desc = "Toggle diagnostics (norm + clangd)" })
